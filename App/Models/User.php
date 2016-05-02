@@ -6,8 +6,8 @@ use App\Db;
 use App\Model;
 
 class User extends Model{
+
     const TABLE = 'users';
-    public static $table = 'users';
     public $email;
     public $name;
     public $age;
@@ -16,9 +16,9 @@ class User extends Model{
     /*
      * данная функция сделана статической, чтобы не создавался объект пользователя, когда нужно найти всех пользователей
      */
-    public static function findAll(){
+/*    public static function findAll(){
         $db = new Db();
         return $db->query("SELECT * FROM " . self::TABLE, self::class);
-    }
+    }*/
 
 }
