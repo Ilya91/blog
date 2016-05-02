@@ -11,7 +11,7 @@ abstract class Model
     {
         $db = new Db();
         return $db->query(
-            'SELECT * FROM ' . static::TABLE,
+            'SELECT * FROM ' . static::TABLE, // static будет использовать тот класс, который вызывает этот код(позднее статическое связывание)
             static::class
         );
     }
