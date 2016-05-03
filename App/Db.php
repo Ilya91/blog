@@ -7,9 +7,11 @@ class Db
 {
     // данный класс остаётся универсальным, чтобы он мог работать с любыми данными
 
+    use Singleton; //использование трэйта
+
     protected $dbh; // это свойство необходимо для того, чтобы не оставить соединение с базой данных в конструкторе и соединение поместить в это свойство
 
-    public function __construct()
+    protected function __construct()
     {
         $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=test', 'root', '');
     }
