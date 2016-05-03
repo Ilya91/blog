@@ -2,8 +2,6 @@
 
 require __DIR__ . '/autoload.php';
 
-$users = \App\Models\User::findAll();
+$news = \App\Models\News::findLastNews();
 
-$db = new \App\Db;
-$res= $db->execute("SELECT * FROM users WHERE id = 4");
-var_dump($res);
+include __DIR__ . '/App/templates/index.php';
