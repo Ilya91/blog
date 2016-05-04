@@ -1,0 +1,17 @@
+navbar{
+	margin-bottom: 20px;
+}
+.clear{
+	clear: both;
+	height: 120px;
+}
+.service{
+	float: right;
+	margin-top:20px;
+}
+h2.title{
+	float: left;
+}
+p.content{
+	clear: both;
+}
