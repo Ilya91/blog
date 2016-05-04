@@ -12,7 +12,6 @@ namespace App;
 trait Singleton
 {
 
-    public $counter;
     protected static $instance;
 
 
