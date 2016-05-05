@@ -49,4 +49,30 @@ abstract class Model
         $db->execute($sql, $values);
     }
 
+    public function delete($where){
+        $db = Db::instance();
+        return $db->query('DELETE FROM ' . static::TABLE . " WHERE $where", static::class);
+    }
+
+    public function update($where){
+        $sets = array();
+        foreach ($this as $k => $v) {
+
+            if ($v === null)
+            {
+                $sets[] = "$k=NULL";
+            }
+            else
+            {
+                $sets[] = "$k='$v'";
+            }
+        }
+
+        $sets_s = implode(',', $sets);
+        $sql = 'UPDATE '. static::TABLE . 'SET '. $sets_s . 'WHERE ' . $where;
+        $db = Db::instance();
+        return $db->query($sql, static::class);
+        //return $sql;
+    }
+
 }
