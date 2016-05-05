@@ -54,7 +54,7 @@ abstract class Model
         return $db->query('DELETE FROM ' . static::TABLE . " WHERE $where", static::class);
     }
 
-    public function update($where){
+    public function update($id){
         $sets = array();
         foreach ($this as $k => $v) {
 
@@ -69,10 +69,17 @@ abstract class Model
         }
 
         $sets_s = implode(',', $sets);
-        $sql = 'UPDATE '. static::TABLE . 'SET '. $sets_s . 'WHERE ' . $where;
+        $sql = 'UPDATE '. static::TABLE . ' SET '. $sets_s . " WHERE id = {$id}";
         $db = Db::instance();
         return $db->query($sql, static::class);
-        //return $sql;
+    }
+
+    public function save($id = ''){
+        if($this->isNew()){
+            $this->insert();
+        }else{
+            $this->update($id);
+        }
     }
 
 }
