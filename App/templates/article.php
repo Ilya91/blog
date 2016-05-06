@@ -1,5 +1,7 @@
-    <div class="new">
-        <h2 class="title"><?=$new->title?></h2>
-        <p class="cintent"><?=$new->content?></p>
-        <em><?=$new->author?></em>
+<?php foreach($this->news as $item):?>
+<div class="new">
+        <h2 class="title"><?=$item->title?></h2>
+        <p class="content"><?=$item->content?></p>
+        <em><?=$item->author?></em>
     </div>
+<?php endforeach;?>
