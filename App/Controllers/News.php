@@ -25,25 +25,37 @@ class News extends Controller
 
     protected function beforeAction()
     {
-         echo 'Counter';
     }
 
 
-    protected function actionIndex()
+    protected function action_index()
     {
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $item = new \App\Models\News();
-            $item->title = $_POST['title'];
-            //$item->author = $_POST['author'];
-            $item->content = $_POST['content'];
-            $item->save();
-            header('Location: index.php');
-        }
-
         $this->view->display(__DIR__ . '/../templates/header.php');
         $this->view->news = \App\Models\News::findLastNews();
         $this->view->display(__DIR__ . '/../templates/index.php');
+        $this->view->display(__DIR__ . '/../templates/footer.php');
+    }
+
+    protected function action_article()
+    {
+        $url = $_SERVER['REQUEST_URI'];
+        $info = explode('/', $url);
+        $params = array();
+
+
+        foreach ($info as $v)
+        {
+            if ($v != '')
+                $params[] = $v;
+        }
+
+
+        $this->view->display(__DIR__ . '/../templates/header.php');
+        if(isset($params[2])){
+            $id = $params[2];
+            $this->view->news = \App\Models\News::findById($id);
+        }
+        $this->view->display(__DIR__ . '/../templates/article.php');
         $this->view->display(__DIR__ . '/../templates/footer.php');
     }
 }
