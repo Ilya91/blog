@@ -14,9 +14,9 @@ use App\Controllers\Admin;
 
 class Rout
 {
-    private $controller;
-    private $action;
-    private $params;
+    public $controller;
+    public $action;
+    public $params;
 
     public function __construct($url)
     {
