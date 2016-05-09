@@ -16,7 +16,6 @@ foreach ($info as $v)
 $action = 'action_';
 $action .= (isset($params[1]) ? $params[1] : 'index');
 
-
 switch($params[0]){
     case 'news':
         $controller = new \App\Controllers\News();
