@@ -9,7 +9,7 @@
 namespace App\Controllers;
 use App\View;
 
-class News
+class News extends Controller
 {
 
     protected $view;
@@ -20,13 +20,6 @@ class News
     public function __construct()
     {
         $this->view = new View();
-    }
-
-    public function action($action)
-    {
-        $methodName = 'action' . $action;
-        $this->beforeAction();
-        return $this->$methodName();
     }
 
 
