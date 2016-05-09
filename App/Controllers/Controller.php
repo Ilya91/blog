@@ -10,10 +10,11 @@ namespace App\Controllers;
 
 class Controller
 {
+    protected $params;
 
     public function action($action)
     {
-        $methodName = 'action' . $action;
+        $methodName = $action;
         $this->beforeAction();
         return $this->$methodName();
     }
