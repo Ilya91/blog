@@ -1,3 +1,19 @@
+# Disable magic quotes
+php_flag magic_quotes_gpc 0
+php_flag magic_quotes_runtime 0
+
+# Turn on URL rewriting
 RewriteEngine On
 
-RewriteRule ^.*$ index.php [L]
+# Installation directory
+RewriteBase /
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Rewrite all other URLs to index.php/URL
+RewriteRule ^(.*)$ index.php [QSA]
+
+AddDefaultCharset UTF-8
