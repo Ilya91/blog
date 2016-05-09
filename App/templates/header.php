@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="app/templates/css/bootstrap.css">
-    <link rel="stylesheet" href="app/templates/css/styles.css">
-    <link href="app/templates/css/jquery-ui.css" rel="stylesheet">
-    <script src="app/templates/js/jquery-1.10.2.js"></script>
-    <script src="app/templates/js/bootstrap.js"></script>
-    <script src="app/templates/js/scripts.js"></script>
+    <title><?=$title?></title>
+    <link rel="stylesheet" href="/app/templates/css/bootstrap.css">
+    <link rel="stylesheet" href="/app/templates/css/styles.css">
+    <link href="/app/templates/css/jquery-ui.css" rel="stylesheet">
+    <script src="/app/templates/js/jquery-1.10.2.js"></script>
+    <script src="/app/templates/js/bootstrap.js"></script>
+    <script src="/app/templates/js/scripts.js"></script>
 </head>
 <body>
 <div class="container">
@@ -22,14 +22,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Project name</a>
+                <a class="navbar-brand" href="/">News</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="login.php">Login</a></li>
-                    <li><a href="register.php">Registration</a></li>
-                    <li><a href="admin.php">My Admin</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/admin">Admin</a></li>
+
                    <!-- <?php /*if(logged_in()):*/?>
                         <li><a href="logout.php">Log Out</a></li>
                     --><?php /*endif*/?>
