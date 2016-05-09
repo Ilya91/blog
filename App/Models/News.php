@@ -16,13 +16,12 @@ use App\View;
 
 class News extends Model{
 
-    use View;
     const TABLE = 'news';
 
 
     public $title;
     public $content;
-    public $author_id;
+    public $author;
 
     /**
      * Lazy Load - ленивая загрузка(делаем запрос к базе на получение связанных данных, только тогда, когда они реально нужны)
@@ -40,6 +39,17 @@ class News extends Model{
         }
     }
 
+    public function __isset($name)
+    {
+        switch($name){
+            case 'author':
+                return !empty($this->author_id);
+                break;
+            default:
+                return null;
+        }
+    }
+
     /**
      * @return mixed
      * Запрашивает 3 последние новости
@@ -47,6 +57,11 @@ class News extends Model{
     public static function findLastNews(){
         $db = Db::instance();
         return $db->query("SELECT * FROM " . self::TABLE . " ORDER BY id DESC LIMIT 3", self::class);
+    }
+
+    public function addNews()
+    {
+
     }
 
 
