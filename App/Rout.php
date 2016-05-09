@@ -9,6 +9,9 @@
 namespace App;
 
 
+use App\Controllers\News;
+use App\Controllers\Admin;
+
 class Rout
 {
     private $controller;
@@ -20,27 +23,31 @@ class Rout
         $info = explode('/', $url);
         $this->params = array();
 
+
         foreach ($info as $v)
         {
             if ($v != '')
                 $this->params[] = $v;
         }
 
-        $this->action = 'action';
-        $this->action .= (isset($this->params[1])) ? $this->params[1] : 'index';
+        $this->action = 'action_';
+        $this->action .= (isset($this->params[1]) ? $this->params[1] : 'index');
 
-        switch ($this->params[0])
-        {
-            case 'Article':
-                $this->controller = 'Article';
+        switch($this->params[0]){
+            case 'news':
+                $this->controller = new News();
+                break;
+            case 'admin':
+                $this->controller = new Admin();
                 break;
             case null:
-                $this->controller = 'News';
-                $this->action = 'actionIndex';
+                $this->controller = new News();
+                $this->action = 'action_index';
                 break;
             default:
-                $this->controller = 'News';
-                $this->action = 'actionIndex';
+                $this->controller = new News();
+                $this->action = 'action_index';
+                break;
         }
     }
 }
