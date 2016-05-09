@@ -8,7 +8,7 @@
 
 namespace App\Controllers;
 
-class Controller
+abstract class Controller
 {
     protected $params;
 
@@ -18,5 +18,32 @@ class Controller
         $this->beforeAction();
         return $this->$methodName();
     }
+
+
+    /**
+     * @param $template string Путь к шаблону
+     * @return string
+     */
+    protected function render($template){
+
+        ob_start();
+        foreach ($this->data as $prop => $value) {
+            $$prop = $value;
+        }
+        include "$template";
+        $content = ob_get_contents();
+        ob_get_clean();
+        return $content;
+    }
+
+
+    /**
+     * @param $template
+     * string Путь к шаблону
+     */
+    protected function display($template){
+        echo $this->render($template);
+    }
+
 
 }
