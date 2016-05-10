@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 06.05.2016
- * Time: 21:51
- */
 
 namespace App\Controllers;
 
@@ -12,11 +6,20 @@ abstract class Controller
 {
     protected $params;
 
-    public function action($action)
+    protected abstract function render();
+
+    protected abstract function beforeAction();
+
+    /**
+     * @param $action
+     * @param $params
+     */
+    public function action($action, $params)
     {
-        $methodName = $action;
+        $this->params = $params;
         $this->beforeAction();
-        return $this->$methodName();
+        $this->$action();
+        $this->render();
     }
 
 
@@ -24,10 +27,10 @@ abstract class Controller
      * @param $template string Путь к шаблону
      * @return string
      */
-    protected function render($template){
+    protected function template($template, $vars = array()){
 
         ob_start();
-        foreach ($this->data as $prop => $value) {
+        foreach ($vars as $prop => $value) {
             $$prop = $value;
         }
         include "$template";
@@ -36,14 +39,6 @@ abstract class Controller
         return $content;
     }
 
-
-    /**
-     * @param $template
-     * string Путь к шаблону
-     */
-    protected function display($template){
-        echo $this->render($template);
-    }
 
 
 }
