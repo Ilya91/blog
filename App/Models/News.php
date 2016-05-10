@@ -59,10 +59,6 @@ class News extends Model{
         return $db->query("SELECT * FROM " . self::TABLE . " ORDER BY id DESC LIMIT 3", self::class);
     }
 
-    public function addNews()
-    {
-
-    }
 
 
 
