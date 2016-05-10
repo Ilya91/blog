@@ -1,22 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 09.05.2016
- * Time: 12:09
- */
 
 namespace App;
-
 
 use App\Controllers\News;
 use App\Controllers\Admin;
 
 class Rout
 {
-    public $controller;
-    public $action;
-    public $params;
+    private $controller;
+    private $action;
+    private $params;
 
     public function __construct($url)
     {
@@ -49,5 +42,11 @@ class Rout
                 $this->action = 'action_index';
                 break;
         }
+    }
+
+    public function Request()
+    {
+        $c = $this->controller;
+        $c->action($this->action, $this->params);
     }
 }
