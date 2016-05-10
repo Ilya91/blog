@@ -1,5 +1,5 @@
 <div class="new">
-        <h2 class="title"><?=$news->title?></h2>
-        <p class="content"><?=$news->content?></p>
-        <em><?=$news->author?></em>
+        <h2 class="title"><?=$article->title?></h2>
+        <p class="content"><?=$article->content?></p>
+        <em><?=$article->author?></em>
 </div>
