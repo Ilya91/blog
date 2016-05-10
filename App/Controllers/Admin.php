@@ -8,33 +8,20 @@
 
 namespace App\Controllers;
 use App\Models\News;
-use App\View;
 
-class Admin extends Controller
+class Admin extends Base_Admin
 {
-
-    protected $view;
-
-    /**
-     * News constructor.
-     */
-    public function __construct()
-    {
-        $this->view = new View();
-    }
-
 
     protected function beforeAction()
     {
+        $this->title = 'Admin: ';
     }
-
 
     protected function action_index()
     {
-        $this->view->display(__DIR__ . '/../templates/header.php');
-        $this->view->news = \App\Models\News::findAll();
-        $this->view->display(__DIR__ . '/../templates/admin/admin.php');
-        $this->view->display(__DIR__ . '/../templates/footer.php');
+        $this->title .= 'список новостей';
+        $news  = News::findall();
+        $this->content = $this->template(__DIR__ . '/../templates/admin/admin.php', array('news' => $news));
     }
 
     protected function action_edit()
