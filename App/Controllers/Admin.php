@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 09.05.2016
- * Time: 14:50
- */
 
 namespace App\Controllers;
 use App\Models\News;
