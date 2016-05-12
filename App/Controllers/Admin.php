@@ -57,7 +57,6 @@ class Admin extends Base_Admin
             $obj->save();
             header('Location: /admin');
         }
-
         $this->content = $this->template(__DIR__ . '/../templates/admin/add.php');
     }
 
