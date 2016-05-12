@@ -27,41 +27,27 @@ class Admin extends Base_Admin
     protected function action_edit()
     {
 
-        $url = $_SERVER['REQUEST_URI'];
-        $info = explode('/', $url);
-        $params = array();
+        $this->title .= 'редактирование статьи';
 
-
-        foreach ($info as $v)
-        {
-            if ($v != '')
-                $params[] = $v;
-        }
-
-
-        if(isset($params[2])){
-            $id = $params[2];
-            $obj = $this->view->news = \App\Models\News::findById($id);
+        if(isset($this->params[2])){
+            $id = $this->params[2];
+            $news = News::findById($id);
 
             if(isset($_POST['edit'])){
-                $obj->title = $_POST['title'];
-                $obj->content = $_POST['content'];
-                $obj->author = $_POST['author'];
-                $obj->save($id);
+                $news->title = $_POST['title'];
+                $news->content = $_POST['content'];
+                $news->author = $_POST['author'];
+                $news->save($id);
                 header('Location: /admin');
             }
 
         }
-
-
-
-        $this->view->display(__DIR__ . '/../templates/header.php');
-        $this->view->display(__DIR__ . '/../templates/admin/edit.php');
-        $this->view->display(__DIR__ . '/../templates/footer.php');
+        $this->content = $this->template(__DIR__ . '/../templates/admin/edit.php', array('news' => $news));
     }
 
     protected function action_add()
     {
+        $this->title .= 'добавить новую статью';
 
         if(isset($_POST['add'])){
             $obj = new News();
@@ -72,29 +58,15 @@ class Admin extends Base_Admin
             header('Location: /admin');
         }
 
-        $this->view->display(__DIR__ . '/../templates/header.php');
-        $this->view->display(__DIR__ . '/../templates/admin/add.php');
-        $this->view->display(__DIR__ . '/../templates/footer.php');
+        $this->content = $this->template(__DIR__ . '/../templates/admin/add.php');
     }
 
 
-    protected function action_delete(){
+    protected function action_delete()
+    {
 
-        $url = $_SERVER['REQUEST_URI'];
-        $info = explode('/', $url);
-        $params = array();
-
-
-        foreach ($info as $v)
-        {
-            if ($v != '')
-                $params[] = $v;
-        }
-
-
-
-        if(isset($params[2])){
-            $id = $params[2];
+        if(isset($this->params[2])){
+            $id = $this->params[2];
 
             $where = "id = {$id}";
             $item = new News();
