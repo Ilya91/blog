@@ -11,14 +11,14 @@ class Admin extends Base_Admin
         $this->title = 'Admin: ';
     }
 
-    protected function action_index()
+    protected function actionIndex()
     {
         $this->title .= 'список новостей';
         $news  = News::findall();
         $this->content = $this->template(__DIR__ . '/../templates/admin/admin.php', array('news' => $news));
     }
 
-    protected function action_edit()
+    protected function actionEdit()
     {
 
         $this->title .= 'редактирование статьи';
@@ -39,7 +39,7 @@ class Admin extends Base_Admin
         $this->content = $this->template(__DIR__ . '/../templates/admin/edit.php', array('news' => $news));
     }
 
-    protected function action_add()
+    protected function actionAdd()
     {
         $this->title .= 'добавить новую статью';
 
@@ -55,7 +55,7 @@ class Admin extends Base_Admin
     }
 
 
-    protected function action_delete()
+    protected function actionDelete()
     {
 
         if(isset($this->params[2])){
