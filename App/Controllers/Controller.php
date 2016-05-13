@@ -40,5 +40,8 @@ abstract class Controller
     }
 
 
+    public function __call($name, $params){
+        echo 'this method nod found';
+    }
 
 }
