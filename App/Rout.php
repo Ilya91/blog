@@ -23,8 +23,8 @@ class Rout
                 $this->params[] = $v;
         }
 
-        $this->action = 'action_';
-        $this->action .= (isset($this->params[1]) ? $this->params[1] : 'index');
+        $this->action = 'action';
+        $this->action .= (isset($this->params[1]) ? ucwords($this->params[1]) : 'Index');
 
         switch($this->params[0]){
             case 'news':
@@ -35,11 +35,11 @@ class Rout
                 break;
             case null:
                 $this->controller = new News();
-                $this->action = 'action_index';
+                $this->action = 'actionIndex';
                 break;
             default:
                 $this->controller = new News();
-                $this->action = 'action_index';
+                $this->action = 'actionIndex';
                 break;
         }
     }
