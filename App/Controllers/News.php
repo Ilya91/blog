@@ -2,26 +2,31 @@
 
 namespace App\Controllers;
 
+use \App\Models\News;
+
 class News extends Base
 {
-    protected function beforeAction()
+    public function beforeAction()
     {
     }
 
 
-    protected function action_index()
+    protected function actionIndex()
     {
         $this->title = 'Список новостей';
-        $news  = \App\Models\News::findLastNews();
+        $news  = News::findLastNews();
         $this->content = $this->template(__DIR__ . '/../templates/index.php', array('news' => $news));
     }
 
-    protected function action_article()
+    protected function actionArticle()
     {
-        $this->title = 'Статья';
+
         if(isset($this->params[2])){
             $id = $this->params[2];
-            $article = \App\Models\News::findById($id);
+            $article = News::findById($id);
+            $articleArr = (array)$article;
+            $this->title = $articleArr['title'];
+
         }
         $this->content = $this->template(__DIR__ . '/../templates/article.php', array('article' => $article));
     }
