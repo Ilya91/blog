@@ -27,7 +27,8 @@ abstract class Controller
      * @param $template string Путь к шаблону
      * @return string
      */
-    protected function template($template, $vars = array()){
+    protected function template($template, $vars = array())
+    {
 
         ob_start();
         foreach ($vars as $prop => $value) {
@@ -40,7 +41,8 @@ abstract class Controller
     }
 
 
-    public function __call($name, $params){
+    public function __call($name, $params)
+    {
         echo 'this method nod found';
     }
 
