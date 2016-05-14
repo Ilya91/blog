@@ -17,8 +17,7 @@ class Rout
         $this->params = array();
 
 
-        foreach ($info as $v)
-        {
+        foreach ($info as $v) {
             if ($v != '')
                 $this->params[] = $v;
         }
@@ -26,7 +25,7 @@ class Rout
         $this->action = 'action';
         $this->action .= (isset($this->params[1]) ? ucwords($this->params[1]) : 'Index');
 
-        switch($this->params[0]){
+        switch ($this->params[0]) {
             case 'news':
                 $this->controller = new News();
                 break;

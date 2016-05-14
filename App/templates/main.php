@@ -38,3 +38,7 @@
         </div>
     </nav>
     <div class="clear"></div>
+    <?= $content ?>
+</div>
+</body>
+</html>

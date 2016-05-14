@@ -12,9 +12,8 @@ use App\View;
  *
  * @property \App\Models\Author $author
  */
-
-
-class News extends Model{
+class News extends Model
+{
 
     const TABLE = 'news';
 
@@ -30,7 +29,7 @@ class News extends Model{
      */
     public function __get($name)
     {
-        switch($name){
+        switch ($name) {
             case 'author':
                 return Author::findById($this->author_id);
                 break;
@@ -41,7 +40,7 @@ class News extends Model{
 
     public function __isset($name)
     {
-        switch($name){
+        switch ($name) {
             case 'author':
                 return !empty($this->author_id);
                 break;
@@ -54,12 +53,11 @@ class News extends Model{
      * @return mixed
      * Запрашивает 3 последние новости
      */
-    public static function findLastNews(){
+    public static function findLastNews()
+    {
         $db = Db::instance();
         return $db->query("SELECT * FROM " . self::TABLE . " ORDER BY id DESC LIMIT 3", self::class);
     }
-
-
 
 
 }

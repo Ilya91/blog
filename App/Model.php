@@ -19,65 +19,68 @@ abstract class Model
         );
     }
 
-    public static function findById($id){
+    public static function findById($id)
+    {
         $db = Db::instance();
         return $db->query('SELECT * FROM ' . static::TABLE . " WHERE id = '{$id}'", static::class)[0];
     }
 
 
-    public function isNew(){
+    public function isNew()
+    {
         return empty($this->id);
     }
 
-    public function insert(){
-        if(!$this->isNew()){
+    public function insert()
+    {
+        if (!$this->isNew()) {
             return;
         }
         $columns = [];
         $values = [];
-        foreach($this as $k => $v){
-            if('id' == $k){
+        foreach ($this as $k => $v) {
+            if ('id' == $k) {
                 continue;
             }
             $columns[] = $k;
-            $values[':' .$k] = $v;
+            $values[':' . $k] = $v;
         }
         //var_dump($values);
 
-        $sql = 'INSERT INTO ' . static::TABLE . '('. implode(',', $columns) . ') VALUES('. implode(',', array_keys($values)).')';
+        $sql = 'INSERT INTO ' . static::TABLE . '(' . implode(',', $columns) . ') VALUES(' . implode(',', array_keys($values)) . ')';
         $db = Db::instance();
         $db->execute($sql, $values);
     }
 
-    public function delete($where){
+    public function delete($where)
+    {
         $db = Db::instance();
         return $db->query('DELETE FROM ' . static::TABLE . " WHERE $where", static::class);
     }
 
-    public function update($id){
+    public function update($id)
+    {
         $sets = array();
         foreach ($this as $k => $v) {
 
-            if ($v === null)
-            {
+            if ($v === null) {
                 $sets[] = "$k=NULL";
-            }
-            else
-            {
+            } else {
                 $sets[] = "$k='$v'";
             }
         }
 
         $sets_s = implode(',', $sets);
-        $sql = 'UPDATE '. static::TABLE . ' SET '. $sets_s . " WHERE id = {$id}";
+        $sql = 'UPDATE ' . static::TABLE . ' SET ' . $sets_s . " WHERE id = {$id}";
         $db = Db::instance();
         return $db->query($sql, static::class);
     }
 
-    public function save($id = ''){
-        if($this->isNew()){
+    public function save($id = '')
+    {
+        if ($this->isNew()) {
             $this->insert();
-        }else{
+        } else {
             $this->update($id);
         }
     }

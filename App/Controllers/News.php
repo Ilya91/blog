@@ -14,14 +14,14 @@ class News extends Base
     protected function actionIndex()
     {
         $this->title = 'Список новостей';
-        $news  = News::findLastNews();
+        $news = News::findLastNews();
         $this->content = $this->template(__DIR__ . '/../templates/index.php', array('news' => $news));
     }
 
     protected function actionArticle()
     {
 
-        if(isset($this->params[2])){
+        if (isset($this->params[2])) {
             $id = $this->params[2];
             $article = News::findById($id);
             $articleArr = (array)$article;

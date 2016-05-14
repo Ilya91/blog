@@ -32,9 +32,9 @@ Class View
      */
     public function __isset($name)
     {
-        if($name){
+        if ($name) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -43,7 +43,8 @@ Class View
      * @param $template string Путь к шаблону
      * @return string
      */
-    public function render($template){
+    public function render($template)
+    {
 
         ob_start();
         foreach ($this->data as $prop => $value) {
@@ -60,7 +61,8 @@ Class View
      * @param $template
      * string Путь к шаблону
      */
-    public function display($template){
+    public function display($template)
+    {
         echo $this->render($template);
     }
 
@@ -75,6 +77,6 @@ Class View
      */
     public function count()
     {
-       return count($this->data);
+        return count($this->data);
     }
 }

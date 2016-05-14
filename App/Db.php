@@ -13,7 +13,12 @@ class Db
 
     protected function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=test', 'root', '');
+        try {
+            $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=test', 'root', '');
+        } catch (\PDOException $e) {
+            throw new \App\Exceptions\Db($e->getMessage());
+        }
+
     }
 
     public function execute($sql, $params = [])
